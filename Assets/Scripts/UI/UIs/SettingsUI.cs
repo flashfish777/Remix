@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class SettingsUI : UIBase
+{
+    private void Awake()
+    {
+        // 返回
+        Register("back").onClick = onBackBtn;
+    }
+
+    private void onBackBtn(GameObject @object, PointerEventData data)
+    {
+        Time.timeScale = 1;
+        Close();
+    }
+}
