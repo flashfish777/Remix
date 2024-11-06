@@ -44,7 +44,7 @@ public class GamingUI : UIBase
 
     private void onQuitBtn(GameObject @object, PointerEventData data)
     {
-        Close();
+        UIManager.Instance.CloseAllUI();
 
         UIManager.Instance.ShowUI<LoginUI>("LoginUI");
     }

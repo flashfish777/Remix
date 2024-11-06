@@ -9,7 +9,7 @@ public class DictionaryUI : UIBase
     private void Awake()
     {
         // 返回
-        Register("back").onClick = onBackBtn;
+        Register("BackButton").onClick = onBackBtn;
     }
 
     private void onBackBtn(GameObject @object, PointerEventData data)

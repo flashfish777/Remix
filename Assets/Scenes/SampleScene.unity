@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 1593947773}
   - component: {fileID: 1593947775}
   - component: {fileID: 1593947776}
+  - component: {fileID: 1593947777}
   m_Layer: 0
   m_Name: GameApp
   m_TagString: Untagged
@@ -354,6 +355,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxWater: 0
   CurWater: 0
+--- !u!114 &1593947777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593947772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b0d146e873cba47b1302485e3baf87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmSource: {fileID: 0}
+  intfSource: {fileID: 0}
+  effectSource: {fileID: 0}
+  bgmValue: 0
+  intfValue: 0
+  effectValue: 0
 --- !u!1 &1785938324
 GameObject:
   m_ObjectHideFlags: 0

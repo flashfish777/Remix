@@ -1,0 +1,1 @@
+这样传的时候你们直接用可能会有一些东西会missing，如果有就在群里问一下，我们用了Localization和DOTween插件，可能Localization需要添加一下，然后GridUI这个脚本里有个小作文记得看！希望大家能理解我的代码结构，合作愉快！

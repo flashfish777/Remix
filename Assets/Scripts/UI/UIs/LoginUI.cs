@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,10 +12,13 @@ public class LoginUI : UIBase
     private void Awake()
     {
         // 开始游戏
-        Register("startBtn").onClick = onStartGameBtn;
-
+        Register("ButtonController/startBtn").onClick = onStartGameBtn;
+        // 设置
+        Register("ButtonController/settings").onClick = onSettingsBtn;
+        // 衣柜
+        Register("ButtonController/dictionary").onClick = onDictionaryBtn;
         // 退出游戏
-        Register("quitBtn").onClick = onExitGameBtn;
+        Register("ButtonController/quitBtn").onClick = onExitGameBtn;
     }
 
     private void onStartGameBtn(GameObject obj, PointerEventData pData)
@@ -25,6 +29,16 @@ public class LoginUI : UIBase
         // 游戏初始化
         GamingManager.Instance.Init(); // 初始化战斗数值
         GamingManager.Instance.ChangeType(GamingType.Init);
+    }
+
+    private void onSettingsBtn(GameObject @object, PointerEventData data)
+    {
+        UIManager.Instance.ShowUI<SettingsUI>("SettingsUI");
+    }
+
+    private void onDictionaryBtn(GameObject @object, PointerEventData data)
+    {
+        UIManager.Instance.ShowUI<DictionaryUI>("DictionaryUI");
     }
 
     private void onExitGameBtn(GameObject obj, PointerEventData pData)
