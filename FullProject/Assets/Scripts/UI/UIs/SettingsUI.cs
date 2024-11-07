@@ -59,6 +59,8 @@ public class SettingsUI : UIBase
 
     private void onBackBtn(GameObject @object, PointerEventData data)
     {
+        AudioManager.Instance.SaveSettings();
+        
         Time.timeScale = 1;
         Close();
     }

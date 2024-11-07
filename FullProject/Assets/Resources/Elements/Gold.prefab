@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementType: 0
-  smallSprite: {fileID: -1543462586, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
-  middleSprite: {fileID: 637195315, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
-  largeSprite: {fileID: 1364818432, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
+  smallSprite: {fileID: -1485115425, guid: eab6dfa17849e9041bdcc6e40ce7f4ad, type: 3}
+  middleSprite: {fileID: 209558198, guid: eab6dfa17849e9041bdcc6e40ce7f4ad, type: 3}
+  largeSprite: {fileID: 989481246, guid: eab6dfa17849e9041bdcc6e40ce7f4ad, type: 3}
+  amount: 0

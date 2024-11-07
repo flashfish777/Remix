@@ -23,6 +23,10 @@ public class GridManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void Init()
+    {
         //TODO:读取配置表，生成初始关卡。现在以下部分是随机数据代替。
         for (int i = 0; i < 25; i++)
         {
@@ -196,5 +200,20 @@ public class GridManager : MonoBehaviour
     //TODO:返回成品衣服sprite，用于最终展示？或者还是返回id比较方便？
     public List<Sprite> GetCurrentClothesList() {
         return new List<Sprite>();
+    }
+
+    public void ClearAll()
+    {
+        foreach (Element item in elements)
+        {
+            if (item != null)
+            Destroy(item.gameObject);
+        }
+        
+        foreach (Clothes item in clothes)
+        {
+            if (item != null)
+            Destroy(item.gameObject);
+        }
     }
 }

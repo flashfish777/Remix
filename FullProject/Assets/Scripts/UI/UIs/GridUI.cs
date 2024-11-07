@@ -6,16 +6,6 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UI;
 
-/*
-这里的格子UI我是直接在预制体中放了一堆Buttton组成的，分几圈，是测试用的（可以理解为写着玩的）
-实现的时候我想的是一个格子UI只对应一个格子，生成的时候在特定位置生成，4*5+25个
-GridUI里有获取点击的逻辑，格子移动的逻辑等等，然后通过GridManager管理它们，格子也可以不一定是Button，
-可以用射线检测点击之类的，反正看你们来嘛，有好的想法也可以。然后点击格子之后会生成水滴的UI，
-水滴UI里就写一些水滴的相关逻辑，比如小中大水，大水破裂按照格子属性四个方向发射该属性小水，
-被射入的格子如果射入水滴克制被射入格子水属性抵消相应容量（大水变中，中变小），相生就反向增大等等，
-水滴的大小可以通过换水滴UI的Image，或者其他想法，然后通过水滴Manager管理水滴这样
-*/
-
 /// <summary>
 /// 格子UI
 /// </summary>
@@ -26,11 +16,13 @@ public class GridUI : UIBase
     public Ease splashEase = Ease.Linear; // 炸裂后移动缓动类型
 
     private static GameObject[] elementsCells = new GameObject[25];  //表现层，25个button
-   
+
     private VerticalLayoutGroup clothesIconLeft; //表现层，对应0-4
     private VerticalLayoutGroup clothesIconTop; //表现层，对应5-9
     private VerticalLayoutGroup clothesIconRight; //表现层，对应10-14   
     private VerticalLayoutGroup clothesIconButtom; //表现层，对应15-19
+
+    private int timeCounter = 0;
 
     private void Awake()
     {
@@ -55,26 +47,40 @@ public class GridUI : UIBase
         UpdateUI();
     }
 
+    private void Update()
+    {
+        if (timeCounter != 0) timeCounter--;
+    }
+
     private void onClockwiseBtn(GameObject @object, PointerEventData data)
     {
         //旋转方向列表，前一个会到后一个的位置，如此循环
-        Rotate(new int[]{
+        if (timeCounter == 0)
+        {
+            timeCounter = 600;
+            Rotate(new int[]{
             0, 1, 2, 3, 4,
             9, 14, 19,
             24, 23, 22, 21, 20,
             15,10, 5
-        });
+            });
+        }
     }
 
     private void onUnClockwiseBtn(GameObject @object, PointerEventData data)
     {
         //旋转方向列表，前一个会到后一个的位置，如此循环
-        Rotate(new int[]{
+        if (timeCounter == 0)
+        {
+            timeCounter = 600;
+            Rotate(new int[]{
             11,16,17,18,13,8,7,6
-        });
+            });
+        }
     }
 
-    private void Rotate(int[] rotateOder) {
+    private void Rotate(int[] rotateOder)
+    {
         // 存储旋转前的Button和逻辑数组
         GameObject[] tempButtons = new GameObject[rotateOder.Length];
         for (int i = 0; i < rotateOder.Length; i++)
@@ -111,15 +117,19 @@ public class GridUI : UIBase
         {
             return;
         }
-        else {
-            //TODO: 更新gamingUi的水量
+        else
+        {
             GamingManager.Instance.CurWater--;
+            UIManager.Instance.GetUI<GamingUI>("GamingUI").UpdateWater();
         }
+
         //使用协程，每次播放完动画再进入下一次迭代
         StartCoroutine(AddElementCoroutine(index, GridManager.Instance.getElement(index).elementType));
+
         if (GamingManager.Instance.CurWater == 0)
         {
-            //TODO：调用结算逻辑
+            // 失败
+            GamingManager.Instance.ChangeType(GamingType.Lose);
         }
     }
 
@@ -153,7 +163,8 @@ public class GridUI : UIBase
         yield return new WaitForSeconds(splashDuration);//等待一次动画时间
     }
 
-    private void splashElement(GameObject cell, ElementType bombingType, Vector3 targetPosition) {
+    private void splashElement(GameObject cell, ElementType bombingType, Vector3 targetPosition)
+    {
         Vector3 cellPosition = cell.transform.position;
         GameObject waterDrop = Instantiate(Resources.Load<GameObject>(
                     "Elements/BombEffect/" + bombingType.ToString() + "Effect"), cellPosition, Quaternion.identity);
@@ -173,7 +184,7 @@ public class GridUI : UIBase
         if (isBomb == 1)
         {
             ElementType bombingType = GridManager.Instance.getElement(index).elementType;
-            
+
             List<int> neighbourElements = GridManager.Instance.FindNeighbourElement(index);
             List<int> clothCellIndexs = GridManager.Instance.FindClothCellIndex(index);
 
@@ -203,7 +214,7 @@ public class GridUI : UIBase
             imageLeft.GetComponent<Image>().sprite = GridManager.Instance.GetClothesSprite(i);
 
             Transform imageTop = clothesIconTop.transform.GetChild(i);
-            imageTop.GetComponent<Image>().sprite = GridManager.Instance.GetClothesSprite(i+5);
+            imageTop.GetComponent<Image>().sprite = GridManager.Instance.GetClothesSprite(i + 5);
 
             Transform imageRight = clothesIconRight.transform.GetChild(i);
             imageRight.GetComponent<Image>().sprite = GridManager.Instance.GetClothesSprite(i + 10);

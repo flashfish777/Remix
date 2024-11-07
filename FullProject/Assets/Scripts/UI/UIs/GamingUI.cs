@@ -25,7 +25,9 @@ public class GamingUI : UIBase
 
     private void onCompleteBtn(GameObject @object, PointerEventData data)
     {
+        UIManager.Instance.CloseAllUI();
         
+        GamingManager.Instance.ChangeType(GamingType.Complete);
     }
 
     private void onDictionaryBtn(GameObject @object, PointerEventData data)
@@ -46,11 +48,14 @@ public class GamingUI : UIBase
     {
         UIManager.Instance.CloseAllUI();
 
+        GamingManager.Instance.ChangeType(GamingType.None);
+
         UIManager.Instance.ShowUI<LoginUI>("LoginUI");
     }
 
-    private void Start()
+    public void UpdateWater()
     {
-        
+        waterSld.value = GamingManager.Instance.GetWaterSld();
+        waterSld.transform.Find("WaterCountDown").GetComponent<Text>().text = GamingManager.Instance.GetWaterTxt();
     }
 }

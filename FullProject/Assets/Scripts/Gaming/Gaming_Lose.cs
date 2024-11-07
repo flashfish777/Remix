@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 游戏失败
+/// </summary>
 public class Gaming_Lose : GamingUnit
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Init()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // 显示失败界面
     }
 }

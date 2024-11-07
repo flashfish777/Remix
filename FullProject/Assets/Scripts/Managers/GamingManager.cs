@@ -11,7 +11,7 @@ public enum GamingType
 {
     None,
     Init,
-    Win,
+    Complete,
     Lose
 }
 
@@ -31,7 +31,6 @@ public class GamingManager : MonoBehaviour
     public void Init()
     {
         MaxWater = 20;
-        CurWater = 20;
     }
 
     // 单局初始化
@@ -51,18 +50,19 @@ public class GamingManager : MonoBehaviour
         switch (type)
         {
             case GamingType.None:
+                gamingUnit = null;
                 break;
             case GamingType.Init:
                 gamingUnit = new Gaming_Init();
                 break;
-            case GamingType.Win:
-                gamingUnit = new Gaming_Win();
+            case GamingType.Complete:
+                gamingUnit = new Gaming_Compelete();
                 break;
             case GamingType.Lose:
                 gamingUnit = new Gaming_Lose();
                 break;
         }
-        gamingUnit.Init(); // 初始化
+        gamingUnit?.Init(); // 初始化
     }
 
     private void Update()
@@ -71,5 +71,15 @@ public class GamingManager : MonoBehaviour
         {
             gamingUnit.OnUpdate();
         }
+    }
+
+    public float GetWaterSld()
+    {
+        return CurWater / (float)MaxWater;
+    }
+
+    public string GetWaterTxt()
+    {
+        return CurWater.ToString() + "/" + MaxWater.ToString();
     }
 }
