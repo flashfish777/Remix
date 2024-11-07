@@ -66,6 +66,7 @@ public class DictionaryManager
     [ContextMenu("Find Assets")]
     void FindAllAssets()
     {
+        /*
         string[] guids = AssetDatabase.FindAssets("t:ItemSO");
         foreach (var guid in guids)
         {
@@ -77,7 +78,7 @@ public class DictionaryManager
             {
                 dictioinarySO.Add(asset);
             }
-        }
+        }*/
     }
     //读json数据
     public List<ItemData> ReadItemSODate()

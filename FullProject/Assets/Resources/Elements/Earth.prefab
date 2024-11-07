@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3399147370136760928}
   - component: {fileID: 5568369138922775852}
+  - component: {fileID: 691749975389998829}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Untagged
@@ -49,3 +50,24 @@ MonoBehaviour:
   middleSprite: {fileID: -1358974639, guid: 3f9b888d7fb06bd4ebefba4dec179298, type: 3}
   largeSprite: {fileID: -1001913458, guid: 3f9b888d7fb06bd4ebefba4dec179298, type: 3}
   amount: 0
+--- !u!95 &691749975389998829
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6650287170750242928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 83690694d26e2cb468ddb078f7b6c129, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

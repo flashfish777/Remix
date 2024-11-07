@@ -19,7 +19,6 @@ public class Element : MonoBehaviour
 
     public int amount; // 1,2,3 分别代表 小，中，大图标，0的时候消失，3+1的时候爆炸，值赋为0；
 
-
     //爆炸返回1，否则返回0.
     public int AddElement(ElementType incomingType) {
         if (amount == 0)

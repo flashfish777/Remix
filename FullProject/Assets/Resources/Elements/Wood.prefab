@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3399147370136760928}
   - component: {fileID: 5568369138922775852}
+  - component: {fileID: 1696589929246166999}
   m_Layer: 0
   m_Name: Wood
   m_TagString: Untagged
@@ -49,3 +50,24 @@ MonoBehaviour:
   middleSprite: {fileID: -389419632, guid: 4d259850ec5732842affa644b1875457, type: 3}
   largeSprite: {fileID: 2027977838, guid: 4d259850ec5732842affa644b1875457, type: 3}
   amount: 1
+--- !u!95 &1696589929246166999
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6650287170750242928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 097d19e43838bd444bd2c0dbfba56629, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -145,8 +145,44 @@ public class GridUI : UIBase
         }
     }
 
+    private void PlayExplosionFrameAnimation(GameObject cell, ElementType elementType)
+    {
+        Image image = cell.transform.GetChild(0).GetComponent<Image>();
+        Animator animator = image.GetComponent<Animator>();
+
+        if (animator == null)
+        {
+            animator = image.gameObject.AddComponent<Animator>();
+        }
+        // 根据elementType设置Animator Controller
+        animator.runtimeAnimatorController = GetAnimatorController(elementType);
+    }
+
+    private RuntimeAnimatorController GetAnimatorController(ElementType elementType)
+    {
+        // 根据elementType返回对应的Animator Controller
+        switch (elementType)
+        {
+            case ElementType.Fire:
+                return Resources.Load<RuntimeAnimatorController>("Elements/BombAnimation/Fire");
+            case ElementType.Water:
+                return Resources.Load<RuntimeAnimatorController>("Elements/BombAnimation/Water");
+            case ElementType.Wood:
+                return Resources.Load<RuntimeAnimatorController>("Elements/BombAnimation/Wood");
+            case ElementType.Gold:
+                return Resources.Load<RuntimeAnimatorController>("Elements/BombAnimation/Gold");
+            case ElementType.Earth:
+                return Resources.Load<RuntimeAnimatorController>("Elements/BombAnimation/Earth");
+            default:
+                return null;
+        }
+    }
+
     private IEnumerator PlayExplosionAnimationCoroutine(GameObject cell, List<int> neighbourElements, List<int> clothCellIndexs, ElementType bombingType)
     {
+        //等待爆炸动画时间...应该播放动画完成后触发事件实现，但不想改了，先这样写吧
+        yield return new WaitForSeconds(0.15f);
+        
         foreach (int neighbourIndex in neighbourElements)
         {
             Vector3 neighbourPosition = elementsCells[neighbourIndex].transform.position;
@@ -193,7 +229,6 @@ public class GridUI : UIBase
     {
         
         int isBomb = GridManager.Instance.getElement(index).AddElement(type);
-        UpdateUI();
         if (isBomb == 1)
         {
             ElementType bombingType = GridManager.Instance.getElement(index).elementType;
@@ -201,6 +236,7 @@ public class GridUI : UIBase
             List<int> neighbourElements = GridManager.Instance.FindNeighbourElement(index);
             List<int> clothCellIndexs = GridManager.Instance.FindClothCellIndex(index);
 
+            PlayExplosionFrameAnimation(elementsCells[index], bombingType);
             yield return StartCoroutine(PlayExplosionAnimationCoroutine(elementsCells[index], neighbourElements, clothCellIndexs, bombingType));
 
             GridManager.Instance.UpdateClothes(clothCellIndexs, bombingType);
@@ -211,6 +247,9 @@ public class GridUI : UIBase
                 runningCoroutines++;
                 StartCoroutine(AddElementCoroutine(neighbourElementIndex, bombingType));
             }
+        }
+        else {
+            UpdateUI();
         }
         runningCoroutines--;
     }
