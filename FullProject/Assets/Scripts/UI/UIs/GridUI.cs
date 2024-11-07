@@ -22,7 +22,9 @@ public class GridUI : UIBase
     private VerticalLayoutGroup clothesIconRight; //表现层，对应10-14   
     private VerticalLayoutGroup clothesIconButtom; //表现层，对应15-19
 
-    private int timeCounter = 0;
+    //private int timeCounter = 0;
+    private int runningCoroutines = 0;//爆炸动画协程计数器，当有协程运行时禁止旋转及点击
+    private int rotateCounter = 0; //旋转动画计数器：外圈16个，内圈8个，每个格子的dotween动画结束时减1，为0时可以操作
 
     private void Awake()
     {
@@ -49,15 +51,15 @@ public class GridUI : UIBase
 
     private void Update()
     {
-        if (timeCounter != 0) timeCounter--;
+        //if (timeCounter != 0) timeCounter--;
     }
 
     private void onClockwiseBtn(GameObject @object, PointerEventData data)
     {
         //旋转方向列表，前一个会到后一个的位置，如此循环
-        if (timeCounter == 0)
+        if (runningCoroutines == 0 && rotateCounter==0)
         {
-            timeCounter = 600;
+            rotateCounter = 16;
             Rotate(new int[]{
             0, 1, 2, 3, 4,
             9, 14, 19,
@@ -70,9 +72,9 @@ public class GridUI : UIBase
     private void onUnClockwiseBtn(GameObject @object, PointerEventData data)
     {
         //旋转方向列表，前一个会到后一个的位置，如此循环
-        if (timeCounter == 0)
+        if (runningCoroutines == 0 && rotateCounter == 0)
         {
-            timeCounter = 600;
+            rotateCounter = 8;
             Rotate(new int[]{
             11,16,17,18,13,8,7,6
             });
@@ -86,13 +88,6 @@ public class GridUI : UIBase
         for (int i = 0; i < rotateOder.Length; i++)
         {
             tempButtons[i] = elementsCells[rotateOder[i]];
-        }
-
-        // 执行旋转动画（平移）
-        for (int i = 0; i < rotateOder.Length; i++)
-        {
-            int nextIndex = (i + 1) % rotateOder.Length;
-            elementsCells[rotateOder[i]].transform.DOMove(elementsCells[rotateOder[nextIndex]].transform.position, rotationDuration);
         }
 
         //更新逻辑层顺序
@@ -109,10 +104,26 @@ public class GridUI : UIBase
 
         }
         UpdateUI();
+
+        // 执行旋转动画（平移）
+        for (int i = 0; i < rotateOder.Length; i++)
+        {
+            int nextIndex = (i + 1) % rotateOder.Length;
+            elementsCells[rotateOder[i]].transform.DOMove(elementsCells[rotateOder[nextIndex]].transform.position, rotationDuration).OnComplete(() =>
+            {
+                rotateCounter--;
+            }); 
+        }
+
+        
     }
 
     public void OnElementClick(int index)
     {
+        if (runningCoroutines != 0 || rotateCounter != 0) {
+            return;
+        }
+
         if (GamingManager.Instance.CurWater == 0)
         {
             return;
@@ -124,6 +135,7 @@ public class GridUI : UIBase
         }
 
         //使用协程，每次播放完动画再进入下一次迭代
+        runningCoroutines++;
         StartCoroutine(AddElementCoroutine(index, GridManager.Instance.getElement(index).elementType));
 
         if (GamingManager.Instance.CurWater == 0)
@@ -179,6 +191,7 @@ public class GridUI : UIBase
 
     private IEnumerator AddElementCoroutine(int index, ElementType type)
     {
+        
         int isBomb = GridManager.Instance.getElement(index).AddElement(type);
         UpdateUI();
         if (isBomb == 1)
@@ -195,9 +208,11 @@ public class GridUI : UIBase
 
             foreach (int neighbourElementIndex in neighbourElements)
             {
+                runningCoroutines++;
                 StartCoroutine(AddElementCoroutine(neighbourElementIndex, bombingType));
             }
         }
+        runningCoroutines--;
     }
 
 
