@@ -24,19 +24,19 @@ public class GamingManager : MonoBehaviour
 
     public GamingUnit gamingUnit; // 战斗单元
 
-    public int MaxWater; // 最大水滴数
-    public int CurWater; // 当前水滴数
+    public int MaxQi; // 最大水滴数
+    public int CurQi; // 当前水滴数
 
     // 初始化
     public void Init()
     {
-        MaxWater = 20;
+        MaxQi = 20;
     }
 
     // 单局初始化
     public void InitOnce()
     {
-        CurWater = MaxWater;
+        CurQi = MaxQi;
     }
 
     private void Awake()
@@ -75,11 +75,24 @@ public class GamingManager : MonoBehaviour
 
     public float GetWaterSld()
     {
-        return CurWater / (float)MaxWater;
+        return CurQi / (float)MaxQi;
     }
 
     public string GetWaterTxt()
     {
-        return CurWater.ToString() + "/" + MaxWater.ToString();
+        return CurQi.ToString() + "/" + MaxQi.ToString();
+    }
+
+    public void UseQi() {
+        if (CurQi == 0)
+        {
+            return;
+        }
+        CurQi--;
+        if (CurQi == 0) { 
+
+        
+        }
+
     }
 }

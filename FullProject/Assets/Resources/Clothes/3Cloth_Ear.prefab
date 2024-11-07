@@ -50,6 +50,7 @@ MonoBehaviour:
   Icon_Fire: {fileID: 970742413, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
   Icon_Earth: {fileID: -1175880872, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
   Icon_Default: {fileID: 21300000, guid: aed7f5376876f514ea4bc3a680c5c8c9, type: 3}
-  ClothesPositionID: 0
-  Type: 0
-  Amount: 0
+  clothesID: 0
+  clothesType: 14
+  ElementType: 0
+  amount: 0

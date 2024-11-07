@@ -51,7 +51,22 @@ public class GridUI : UIBase
 
     private void Update()
     {
-        //if (timeCounter != 0) timeCounter--;
+        //虽然判断胜负应该在逻辑层写，但是没想好怎么在动画结束后才执行结算画面，所以放到这里了
+        if (runningCoroutines == 0)
+        {
+            bool isCleared = GridManager.Instance.IsElementCleared();
+            bool isClothesComplete = GridManager.Instance.IsClothesComplete();
+            bool isQiUsed = GamingManager.Instance.CurQi == 0;
+
+            if (isCleared && isClothesComplete)
+            {
+                GamingManager.Instance.ChangeType(GamingType.Complete);
+                DictionaryManager.Instance.AddCollection(GridManager.Instance.GetCurrentClothesList());
+            } else if (isQiUsed && (!isClothesComplete || !isCleared)) {
+                GamingManager.Instance.ChangeType(GamingType.Lose);
+            }
+        }
+        
     }
 
     private void onClockwiseBtn(GameObject @object, PointerEventData data)
@@ -114,8 +129,6 @@ public class GridUI : UIBase
                 rotateCounter--;
             }); 
         }
-
-        
     }
 
     public void OnElementClick(int index)
@@ -124,25 +137,19 @@ public class GridUI : UIBase
             return;
         }
 
-        if (GamingManager.Instance.CurWater == 0)
+        if (GamingManager.Instance.CurQi == 0)
         {
             return;
         }
         else
         {
-            GamingManager.Instance.CurWater--;
+            GamingManager.Instance.CurQi--;
             UIManager.Instance.GetUI<GamingUI>("GamingUI").UpdateWater();
         }
-
         //使用协程，每次播放完动画再进入下一次迭代
         runningCoroutines++;
         StartCoroutine(AddElementCoroutine(index, GridManager.Instance.getElement(index).elementType));
-
-        if (GamingManager.Instance.CurWater == 0)
-        {
-            // 失败
-            GamingManager.Instance.ChangeType(GamingType.Lose);
-        }
+        //结算要等动画执行完，所以干脆胜负都放在Update里计算了
     }
 
     private void PlayExplosionFrameAnimation(GameObject cell, ElementType elementType)
@@ -277,4 +284,5 @@ public class GridUI : UIBase
             imageButtom.GetComponent<Image>().sprite = GridManager.Instance.GetClothesSprite(i + 15);
         }
     }
+
 }

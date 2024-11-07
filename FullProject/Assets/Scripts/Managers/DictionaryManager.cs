@@ -14,134 +14,96 @@ using Newtonsoft.Json;
 /// 还有还有，被替换的那个原始预制体挂了个button，这里点击后来展示成品图的UI
 /// </summary>
 
+
 //要存进去的
 [System.Serializable]
 public class ItemData
 {
-    public int id;
+    public List<int> ids;//TODO list不能直接序列化，需要处理一下
 }
 
-public class DictionaryManager
+public class DictionaryManager : MonoBehaviour
 {
     public static DictionaryManager Instance;
 
-    public GameObject smallImagePrefab; // 缩略图UI元素预制体
-
-    public GameObject bigImageUIPrefab;//成品图UI元素预制体
-
-    public Image smallImage;//缩略图
-
-    public Image bigImage;//成品图
-
-    public Transform contentPanel; // 下滑视图的内容容器
-
-    public Transform uI;//跟DictionaryUI同一级
-
-    public List<ItemSO> dictioinarySO;//列表存储所有ItemSO的集合
-
-    private Dictionary<int, ItemSO> assetDictionary = new Dictionary<int, ItemSO>();//字典把id和image对应起来
-
+    public List<List<int>>  dictionary;//收集列表，每个的List里有20个int，代表20个部件的id
     public TextAsset jsonFile;//json文件（需要接一下）
+
+
+    ////服装顺序规则
+    //20个部件，按层级排列，每个部件按金木水火土排序
+    //层级：
+    //背景        0-4,
+    //中景摆件    5-9,
+    //后头发      10-14，
+    //身体        15-39,
+    //纹身        40-44,
+    //袜子        45-49,
+    //鞋子        50-54,
+    //腿饰        55-59,
+    //下衣        60-64,
+    //手部        65-69,
+    //上衣        70-74,
+    //腰饰        75-79,
+    //项链        80-84,
+    //妆容        85-89,
+    //耳饰        90-94,
+    //前头发      95-99,
+    //头饰       100-104,
+    //宠物       105-109,
+    //特效       110-114
+    //一般部件按金木水火土占用5个id，身体占25个id, 按丰均壮瘦胖排，每个体型再按金木水火土排
+    [Tooltip("服装字典，顺序看代码注释")]
+    [SerializeField]
+    private Sprite[] Cloth_CatelogList = new Sprite[115];
+
+    public Dictionary<int, Sprite> ClothesCatelog = new Dictionary<int, Sprite>();
+
+
+    public List<List<int>> GetAllCollection()
+    {
+        return dictionary;
+    }
 
     private void Awake()
     {
         Instance = this;
 
-        //准备把成品图UI挂在和DictionaryUI同一级的位置
-        uI = GameObject.Find("UI").transform;
-
-        // 初始化字典
-        foreach (var asset in dictioinarySO)
-        {
-            assetDictionary.Add(asset.id, asset);
+        for (int i = 0; i < Cloth_CatelogList.Length; i++) {
+            ClothesCatelog.Add(i, Cloth_CatelogList[i]);
         }
+
+        ReadItemSODate();
     }
 
     private void Start()
     {
-        FindAllAssets();
     }
 
-    //找所有ItemSO资产并存入字典
-    [ContextMenu("Find Assets")]
-    void FindAllAssets()
-    {
-        /*
-        string[] guids = AssetDatabase.FindAssets("t:ItemSO");
-        foreach (var guid in guids)
-        {
-            string assetPath = AssetDatabase.GUIDToAssetPath(guid);
 
-            ItemSO asset = AssetDatabase.LoadAssetAtPath<ItemSO>(assetPath);
-
-            if (asset != null)
-            {
-                dictioinarySO.Add(asset);
-            }
-        }*/
-    }
     //读json数据
     public List<ItemData> ReadItemSODate()
     {
-        string json = jsonFile.text;
-
-        List<ItemData> itemDataList = JsonConvert.DeserializeObject<List<ItemData>>(json);
-
-        return itemDataList;
-    }
-
-
-    //根据id找对应ItemSO
-    public ItemSO GetAssetById(int id)
-    {
-        if (assetDictionary.TryGetValue(id, out ItemSO asset))
+        if (jsonFile != null)
         {
-            return asset;
+            string json = jsonFile.text;
+            List<ItemData> itemDataList = JsonConvert.DeserializeObject<List<ItemData>>(json);
+
+            return itemDataList;
         }
-        return null;
+        else {
+            return new List<ItemData>();
+        }
+        
     }
 
     public void SaveDictionary()
     {
-        //保存回去
+        //TODO 保存成Json
     }
 
 
-    //更新衣柜内部
-    public void UpdateDictionary()
-    {
-        List<ItemData> itemdata = ReadItemSODate();
-
-        foreach (var itemSO in itemdata)
-        {
-            if (itemSO != null)
-            {
-                //根据id找对应ItemSO
-                ItemSO currentItemSO = GetAssetById(itemSO.id);
-
-                // 实例化缩略、成品预制
-                GameObject newsmallImage = GameObject.Instantiate(smallImagePrefab) as GameObject;
-
-                GameObject newbigImageUI = GameObject.Instantiate(bigImageUIPrefab) as GameObject;
-
-                //挂位置
-                newsmallImage.transform.SetParent(contentPanel);
-
-                newbigImageUI.transform.SetParent(uI);
-
-                //找image组件
-                Image smallimageComponent = newsmallImage.GetComponent<Image>();
-                //image在bigimage的子物体上
-                Image bigimageComponent = newbigImageUI.GetComponentInChildren<Image>();
-
-                //更新sprite
-                if (smallimageComponent != null && bigimageComponent != null)
-                {
-                    smallimageComponent.sprite = currentItemSO.smallImage;
-
-                    bigimageComponent.sprite = currentItemSO.bigImage;
-                }
-            }
-        }
+    public void AddCollection(List<int> collection) {
+        dictionary.Insert(0, collection);//最新的显示在第一个
     }
 }

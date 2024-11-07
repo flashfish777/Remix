@@ -7,6 +7,5 @@ using UnityEngine.UI;
 public class ItemSO : ScriptableObject
 {
     public int id;
-    public Sprite smallImage;
-    public Sprite bigImage;
+    public Sprite Image;
 }

@@ -11,5 +11,6 @@ public class Gaming_Compelete : GamingUnit
     {
         // 显示展示界面
         UIManager.Instance.ShowUI<CompeleteUI>("CompeleteUI");
+        
     }
 }
