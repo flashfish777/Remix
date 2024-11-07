@@ -44,5 +44,6 @@ public class CompeleteUI : UIBase
             ImageFather.transform.GetChild(i).GetComponent<Image>().sprite =
             DictionaryManager.Instance.ClothesCatelog[clothesList[i]];
         }
+        DictionaryManager.Instance.AddCollection(clothesList);
     }
 }

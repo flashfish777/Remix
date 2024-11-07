@@ -26,7 +26,7 @@ public class DictionaryManager : MonoBehaviour
 {
     public static DictionaryManager Instance;
 
-    public List<List<int>>  dictionary;//收集列表，每个的List里有20个int，代表20个部件的id
+    public List<List<int>>  dictionary = new List<List<int>>();//收集列表，每个的List里有20个int，代表20个部件的id
     public TextAsset jsonFile;//json文件（需要接一下）
 
 
@@ -73,6 +73,8 @@ public class DictionaryManager : MonoBehaviour
             ClothesCatelog.Add(i, Cloth_CatelogList[i]);
         }
 
+
+        //此处要读取存档更新dictionary
         ReadItemSODate();
     }
 
