@@ -416,7 +416,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ec72418abff7549ae51805ed958a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFile: {fileID: 0}
   Cloth_CatelogList:
   - {fileID: -611734786, guid: 55d92cb44dfed8745817febbdd72329c, type: 3}
   - {fileID: -1624429011, guid: 55d92cb44dfed8745817febbdd72329c, type: 3}

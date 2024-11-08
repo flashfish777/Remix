@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Localization.Settings;
@@ -38,29 +39,42 @@ public class SettingsUI : UIBase
         languageDropdown.value = AudioManager.Instance.LanguageIndex;
 
         // 返回
-        Register("SettingsOptions/BackButton").onClick = onBackBtn;
+        Register("Back/BackButton").onClick = onBackBtn;
         // 音频设置
-        Register("SettingsOptions/AudioButton").onClick = onAudioBtn;
+        Register("AudioButton").onClick = onAudioBtn;
         // 语言设置
-        Register("SettingsOptions/LanguageButton").onClick = onLanguageBtn;
+        Register("LanguageButton").onClick = onLanguageBtn;
+        // 制作者名单
+        Register("PeopleButton").onClick = onPeopleBtn;
+    }
+
+    private void onPeopleBtn(GameObject @object, PointerEventData data)
+    {
+        transform.Find("VolumeScreen").gameObject.SetActive(false);
+        transform.Find("LanguageScreen").gameObject.SetActive(false);
+        transform.Find("PeopleScreen").gameObject.SetActive(true);
     }
 
     private void onAudioBtn(GameObject @object, PointerEventData data)
     {
         transform.Find("VolumeScreen").gameObject.SetActive(true);
         transform.Find("LanguageScreen").gameObject.SetActive(false);
+        transform.Find("PeopleScreen").gameObject.SetActive(false);
     }
 
     private void onLanguageBtn(GameObject @object, PointerEventData data)
     {
         transform.Find("VolumeScreen").gameObject.SetActive(false);
         transform.Find("LanguageScreen").gameObject.SetActive(true);
+        transform.Find("PeopleScreen").gameObject.SetActive(false);
     }
 
     private void onBackBtn(GameObject @object, PointerEventData data)
     {
         AudioManager.Instance.SaveSettings();
-        
+
+        UIManager.Instance.GetUI<LoginUI>("LoginUI")?.UpDateTitle();
+
         Close();
     }
 

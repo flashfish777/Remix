@@ -15,7 +15,7 @@ public class DictionaryUI : UIBase
     private void Awake()
     {
         // 返回
-        Register("BackButton").onClick = onBackBtn;
+        Register("Back/BackButton").onClick = onBackBtn;
 
         DictionaryContent = GameObject.Find("DictionaryContent");
         smallImagePrefab = Resources.Load("UI/SmallImage") as GameObject;

@@ -16,67 +16,127 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 60d8c030a8073e5439a76b9763cd7553
   m_Entries:
   - m_Id: 146874990592
-    m_Key: GameTitle
+    m_Key: "\u4E94\u884C\u6DF7\u642D\u5E08"
     m_Metadata:
       m_Items: []
   - m_Id: 1954435465216
-    m_Key: StartButton
+    m_Key: "\u5F00\u59CB\u6E38\u620F"
     m_Metadata:
       m_Items: []
   - m_Id: 2201727434752
-    m_Key: SettingButton
+    m_Key: "\u8BBE\u7F6E"
     m_Metadata:
       m_Items: []
   - m_Id: 2306907996160
-    m_Key: Collection
+    m_Key: "\u6536\u85CF"
     m_Metadata:
       m_Items: []
   - m_Id: 2471584759808
-    m_Key: Exit
+    m_Key: "\u9000\u51FA\u6E38\u620F"
     m_Metadata:
       m_Items: []
   - m_Id: 38453394702336
-    m_Key: Audio Settings
+    m_Key: "\u97F3\u9891\u8BBE\u7F6E"
     m_Metadata:
       m_Items: []
   - m_Id: 38579865550848
-    m_Key: Language Settings
+    m_Key: "\u8BED\u8A00\u8BBE\u7F6E"
     m_Metadata:
       m_Items: []
   - m_Id: 38701009633280
-    m_Key: high
+    m_Key: "\u9AD8"
     m_Metadata:
       m_Items: []
   - m_Id: 38792575483904
-    m_Key: low
+    m_Key: "\u4F4E"
     m_Metadata:
       m_Items: []
   - m_Id: 38878214782976
-    m_Key: Master Volume
+    m_Key: "\u4E3B\u97F3\u91CF"
     m_Metadata:
       m_Items: []
   - m_Id: 38978425094144
-    m_Key: Sound Effects
+    m_Key: "\u97F3\u6548"
     m_Metadata:
       m_Items: []
   - m_Id: 39045500403712
-    m_Key: Background Music
+    m_Key: "\u80CC\u666F\u97F3\u4E50"
     m_Metadata:
       m_Items: []
   - m_Id: 39341257555968
-    m_Key: Interface Music
+    m_Key: "\u754C\u9762\u97F3\u4E50"
     m_Metadata:
       m_Items: []
   - m_Id: 39588360781824
-    m_Key: Language
+    m_Key: "\u8BED\u8A00"
     m_Metadata:
       m_Items: []
-  - m_Id: 411716963135488
-    m_Key: EnglishChoose
+  - m_Id: 413693274652672
+    m_Key: "\u7B80\u4F53\u4E2D\u6587"
     m_Metadata:
       m_Items: []
-  - m_Id: 411881535041536
-    m_Key: ChineseChoose
+  - m_Id: 1306917803556864
+    m_Key: "\u751F\u6210\u76EE\u6807\u7081"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1308202976051200
+    m_Key: "\u514B\u5236\u76EE\u6807\u7081"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1308540525248512
+    m_Key: "\u518D\u6765\u4E00\u5C40"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1310057319792640
+    m_Key: "\u8FD4\u56DE\u4E3B\u83DC\u5355"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1318216037990400
+    m_Key: "\u6E38\u620F\u7ED3\u675F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1318297956941824
+    m_Key: "\u6E38\u620F\u80DC\u5229"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1331759747596288
+    m_Key: "1\u3001\u6BCF\u5C40\u6E38\u620F\u5F00\u59CB\u90FD\u4F1A\u4F1A\u83B7\u5F9720\u7081\uFF0C\u4F7F\u7528\u5B8C\u540E\u6E38\u620F\u7ED3\u675F\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1331896280580096
+    m_Key: "2\u3001\u6BCF\u4E2A\u683C\u5B50\u91CC\u7684\u7081\u6709\u5C0F\u4E2D\u5927\u4E09\u79CD\u5F62\u6001\uFF0C\u70B9\u51FB\u683C\u5B50\u52A0\u5165\u7081\uFF0C\u6839\u636E\u7081\u7684\u76F8\u751F\u76F8\u514B\u4F1A\u4F7F\u5176\u4EA7\u751F\u76F8\u5E94\u5F62\u6001\u53D8\u5316\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1332247968776192
+    m_Key: "3\u3001\u9002\u65F6\u4F7F\u7528\u4E0D\u540C\u7684\u65CB\u8F6C\u4F1A\u6709\u66F4\u591A\u7684\u9009\u62E9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1332465330192384
+    m_Key: "4\u3001\u8863\u67DC\u91CC\u5B58\u653E\u5DF2\u7ECF\u83B7\u5F97\u7684\u7A7F\u642D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1334080082706432
+    m_Key: "\u5E2E\u52A9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1378270728585216
+    m_Key: "\u5236\u4F5C\u56E2\u961F\uFF1A"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1378683032862720
+    m_Key: "\u5C0F\u6CB3\u72F8-\u7B56\u5212\u3001\nCHYAPPI-\u7F8E\u672F\u3001ovi-\u7F8E\u672F\u3001\u71AC\u591C\u6CE2\u6BD4-\u7F8E\u672F\u3001\nkklff~-\u97F3\u9891\u3001\u8042\u9752-\u97F3\u9891\u3001\u771F\u7684\u5F88\u563B\u563B-\u97F3\u9891\u3001\n\u9752\u5973-\u7A0B\u5E8F\u3001\u591C\u96C0-\u7A0B\u5E8F\u3001\u79CB\u6C60\u4E0A\u7483-\u7A0B\u5E8F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1379553531297792
+    m_Key: "(\u4EE5\u4E0A\u6392\u540D\u4E0D\u5206\u5148\u540E)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1379589728141312
+    m_Key: "\u7279\u522B\u81F4\u8C22\uFF1A"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1380504153522176
+    m_Key: "\u53C2\u4E0E\u4EBA\u5458"
     m_Metadata:
       m_Items: []
   m_Metadata:

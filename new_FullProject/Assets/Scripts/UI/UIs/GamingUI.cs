@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using System;
 
 /// <summary>
 /// 游戏界面
@@ -20,8 +21,15 @@ public class GamingUI : UIBase
         Register("settings").onClick = onSettingsBtn;
         // 图鉴
         Register("dictionary").onClick = onDictionaryBtn;
+        // 帮助
+        Register("help").onClick = onHelpBtn;
         // 完成
         transform.Find("complete").GetComponent<Button>().onClick.AddListener(() => onCompleteBtn());
+    }
+
+    private void onHelpBtn(GameObject @object, PointerEventData data)
+    {
+        UIManager.Instance.ShowUI<HelpUI>("HelpUI");
     }
 
     private void onCompleteBtn()

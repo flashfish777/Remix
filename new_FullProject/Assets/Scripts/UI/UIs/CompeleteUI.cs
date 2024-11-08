@@ -14,11 +14,21 @@ public class CompeleteUI : UIBase
 
     private void Awake()
     {
+        // 保存
+        Register("saveBtn").onClick = onSaveBtn;
         // 返回主菜单
         Register("quitBtn").onClick = onQuitBtn;
         // 继续游戏
         Register("continueBtn").onClick = onContinueBtn;
     }
+
+    private void onSaveBtn(GameObject @object, PointerEventData data)
+    {
+        List<int> clothesList = GridManager.Instance.GetCurrentClothesList();
+        DictionaryManager.Instance.AddCollection(clothesList);
+        DictionaryManager.Instance.SaveDictionary();
+    }
+
 
     private void onQuitBtn(GameObject @object, PointerEventData data)
     {
@@ -46,9 +56,5 @@ public class CompeleteUI : UIBase
             ImageFather.transform.GetChild(i).GetComponent<Image>().sprite =
             DictionaryManager.Instance.ClothesCatelog[clothesList[i]];
         }
-
-        // 测试,每当按下完成就存一次
-        DictionaryManager.Instance.AddCollection(clothesList);
-        DictionaryManager.Instance.SaveDictionary();
     }
 }
