@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,6 +10,9 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class LoginUI : UIBase
 {
+    private GameObject EnTitle;
+    private GameObject ChTitle;
+
     private void Awake()
     {
         // 开始游戏
@@ -19,6 +23,25 @@ public class LoginUI : UIBase
         Register("ButtonController/dictionary").onClick = onDictionaryBtn;
         // 退出游戏
         Register("ButtonController/quitBtn").onClick = onExitGameBtn;
+
+        EnTitle = transform.Find("GameTitle/English_Title").gameObject;
+        ChTitle = transform.Find("GameTitle/Chinese_Title").gameObject;
+
+        UpDateTitle();
+    }
+
+    public void UpDateTitle()
+    {
+        if (AudioManager.Instance.LanguageIndex == 0)
+        {
+            EnTitle.SetActive(true);
+            ChTitle.SetActive(false);
+        }
+        else
+        {
+            EnTitle.SetActive(false);
+            ChTitle.SetActive(true);
+        }
     }
 
     private void onStartGameBtn(GameObject obj, PointerEventData pData)

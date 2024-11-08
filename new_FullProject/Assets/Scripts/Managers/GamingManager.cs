@@ -30,7 +30,7 @@ public class GamingManager : MonoBehaviour
     // 初始化
     public void Init()
     {
-        MaxQi = 20;
+        MaxQi = 30;
     }
 
     // 单局初始化
