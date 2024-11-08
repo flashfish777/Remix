@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a33a5de97bc1ea4abcf709c66933c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon_Gold: {fileID: -1470268718, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
-  Icon_Wood: {fileID: -136046504, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
-  Icon_Water: {fileID: 1118606963, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
-  Icon_Fire: {fileID: 970742413, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
-  Icon_Earth: {fileID: -1175880872, guid: 07f42cf94dd2f5640a4999f805290f64, type: 3}
+  Icon_Gold: {fileID: -25738818, guid: 23663a97cf258ca4bb57aafca6cb7fdf, type: 3}
+  Icon_Wood: {fileID: -1773416839, guid: 23663a97cf258ca4bb57aafca6cb7fdf, type: 3}
+  Icon_Water: {fileID: 1175867829, guid: 23663a97cf258ca4bb57aafca6cb7fdf, type: 3}
+  Icon_Fire: {fileID: 989113739, guid: 23663a97cf258ca4bb57aafca6cb7fdf, type: 3}
+  Icon_Earth: {fileID: 328254656, guid: 23663a97cf258ca4bb57aafca6cb7fdf, type: 3}
   Icon_Default: {fileID: 21300000, guid: aed7f5376876f514ea4bc3a680c5c8c9, type: 3}
   clothesID: 0
   clothesType: 8
