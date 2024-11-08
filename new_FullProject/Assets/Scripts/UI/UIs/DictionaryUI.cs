@@ -43,10 +43,10 @@ public class DictionaryUI : UIBase
         ClearAllCollections();
         foreach (List<int> collection in itemData)
         {
-            Debug.Log(collection);
             GameObject instantiatedObject = Instantiate(Resources.Load<GameObject>("UI/SmallImage"));
             instantiatedObject.transform.SetParent(DictionaryContent.transform);
-            instantiatedObject.GetComponent<Button>().onClick.AddListener(() => ShowBigImage(collection));
+            List<int> tempList = new List<int>(collection);
+            instantiatedObject.GetComponent<Button>().onClick.AddListener(() => ShowBigImage(tempList));
             for (int i = 0; i < collection.Count; i++)
             {
                 instantiatedObject.transform.GetChild(i).GetComponent<Image>().sprite =

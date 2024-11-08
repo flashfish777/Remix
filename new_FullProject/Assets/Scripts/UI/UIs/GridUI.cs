@@ -60,11 +60,13 @@ public class GridUI : UIBase
 
             if (isCleared && isClothesComplete)
             {
+                UIManager.Instance.CloseAllUI();
                 GamingManager.Instance.ChangeType(GamingType.Complete);
-                DictionaryManager.Instance.AddCollection(GridManager.Instance.GetCurrentClothesList());
-                DictionaryManager.Instance.SaveDictionary();
+                //DictionaryManager.Instance.AddCollection(GridManager.Instance.GetCurrentClothesList());
+                //DictionaryManager.Instance.SaveDictionary();
             }
-            else if (isQiUsed && (!isClothesComplete || !isCleared))
+            else if ((isQiUsed && (!isClothesComplete || !isCleared))
+                || (isCleared && !isClothesComplete))
             {
                 UIManager.Instance.CloseAllUI();
                 GamingManager.Instance.ChangeType(GamingType.Lose);
@@ -150,11 +152,13 @@ public class GridUI : UIBase
         {
             return;
         }
-        else
-        {
-            GamingManager.Instance.CurQi--;
-            UIManager.Instance.GetUI<GamingUI>("GamingUI").UpdateWater();
+        if (GridManager.Instance.getElement(index).amount == 0) {
+            return;
         }
+        
+        GamingManager.Instance.CurQi--;
+        UIManager.Instance.GetUI<GamingUI>("GamingUI").UpdateWater();
+
         //使用协程，每次播放完动画再进入下一次迭代
         runningCoroutines++;
         StartCoroutine(AddElementCoroutine(index, GridManager.Instance.getElement(index).elementType));

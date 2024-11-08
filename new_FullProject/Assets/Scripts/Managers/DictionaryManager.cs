@@ -76,7 +76,7 @@ public class DictionaryManager : MonoBehaviour
             ClothesCatelog.Add(i, Cloth_CatelogList[i]);
         }
 
-        //ReadItemSODate();
+        ReadItemSODate();
     }
 
     private void Start()
